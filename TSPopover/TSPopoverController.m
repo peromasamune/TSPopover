@@ -39,7 +39,6 @@
 - (id)init {
 	if ((self = [super init])) {
         
-        
         self.cornerRadius = CORNER_RADIUS;
         self.titleColor = [UIColor whiteColor];
         self.titleFont = [UIFont boldSystemFontOfSize:14];
@@ -48,7 +47,9 @@
         self.popoverBaseColor = [UIColor blackColor];
         self.popoverGradient = YES;
         screenRect = [[UIScreen mainScreen] bounds];
-        if(self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
+        
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        if(orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight){
             screenRect.size.width = [[UIScreen mainScreen] bounds].size.height;
             screenRect.size.height = [[UIScreen mainScreen] bounds].size.width;
         }
@@ -154,7 +155,7 @@
         titleLabel.textColor = self.titleColor;
         titleLabel.text = self.titleText;
         titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.textAlignment = UITextAlignmentCenter;
+        titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.font = self.titleFont;
     }
     contentViewFrame.origin.x = backgroundPositionX+MARGIN;
