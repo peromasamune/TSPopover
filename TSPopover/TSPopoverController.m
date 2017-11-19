@@ -332,7 +332,9 @@
         
         popoverRect = CGRectMake(popoverX, popoverY, popoverWidth, popoverHeight);
         
-    }else if(self.arrowPosition == TSPopoverArrowPositionHorizontal){
+    }
+    
+    if(self.arrowPosition == TSPopoverArrowPositionHorizontal){
         
         popoverWidth = contentFrame.size.width+ARROW_SIZE+MARGIN*2;
         popoverHeight = contentFrame.size.height+titleLabelheight+MARGIN*2;
@@ -364,16 +366,21 @@
     CGPoint senderPoint;
     [self checkArrowPosition:senderRect];
     
-    if(arrowDirection == TSPopoverArrowDirectionTop){
-        senderPoint = CGPointMake(senderRect.origin.x + (senderRect.size.width/2), senderRect.origin.y + senderRect.size.height);
-    }else if(arrowDirection == TSPopoverArrowDirectionBottom){
-        senderPoint = CGPointMake(senderRect.origin.x + (senderRect.size.width/2), senderRect.origin.y);
-    }else if(arrowDirection == TSPopoverArrowDirectionRight){
-        senderPoint = CGPointMake(senderRect.origin.x, senderRect.origin.y + (senderRect.size.height/2));
-        senderPoint.y = senderPoint.y + screenRect.origin.y;
-    }else if(arrowDirection == TSPopoverArrowDirectionLeft){
-        senderPoint = CGPointMake(senderRect.origin.x + senderRect.size.width, senderRect.origin.y + (senderRect.size.height/2));
-        senderPoint.y = senderPoint.y + screenRect.origin.y;
+    switch (arrowDirection) {
+        case TSPopoverArrowDirectionTop:
+            senderPoint = CGPointMake(senderRect.origin.x + (senderRect.size.width/2), senderRect.origin.y + senderRect.size.height);
+            break;
+        case TSPopoverArrowDirectionBottom:
+            senderPoint = CGPointMake(senderRect.origin.x + (senderRect.size.width/2), senderRect.origin.y);
+            break;
+        case TSPopoverArrowDirectionRight:
+            senderPoint = CGPointMake(senderRect.origin.x, senderRect.origin.y + (senderRect.size.height/2));
+            senderPoint.y = senderPoint.y + screenRect.origin.y;
+            break;
+        case TSPopoverArrowDirectionLeft:
+            senderPoint = CGPointMake(senderRect.origin.x + senderRect.size.width, senderRect.origin.y + (senderRect.size.height/2));
+            senderPoint.y = senderPoint.y + screenRect.origin.y;
+            break;
     }
 
     return senderPoint;

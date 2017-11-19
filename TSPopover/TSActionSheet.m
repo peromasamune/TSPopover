@@ -54,7 +54,7 @@
                 titleColor:(UIColor*)titleColor 
                borderWidth:(NSUInteger)borderWidth 
                borderColor:(UIColor*)borderColor 
-                     block:(void (^)())block
+                     block:(void (^)(void))block
 {
     [buttonsMutableArray addObject:[NSArray arrayWithObjects:
                                     block ? [block copy] : [NSNull null],
@@ -66,7 +66,7 @@
                                     nil]];
 }
 
-- (void)addButtonWithTitle:(NSString *)title block:(void (^)())block 
+- (void)addButtonWithTitle:(NSString *)title block:(void (^)(void))block
 {
     [self addButtonWithTitle:title
                        color:[UIColor grayColor]
@@ -76,7 +76,7 @@
                        block:block];
 }
 
-- (void)destructiveButtonWithTitle:(NSString *)title block:(void (^)())block
+- (void)destructiveButtonWithTitle:(NSString *)title block:(void (^)(void))block
 {
     [self addButtonWithTitle:title
                        color:[UIColor redColor]
@@ -86,7 +86,7 @@
                        block:block];
 }
 
-- (void)cancelButtonWithTitle:(NSString *)title block:(void (^)())block
+- (void)cancelButtonWithTitle:(NSString *)title block:(void (^)(void))block
 {
     [self addButtonWithTitle:title
                        color:[UIColor blackColor]
@@ -137,9 +137,9 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(BORDER, buttonY, self.bounds.size.width-BORDER*2, buttonHeight);
         button.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-        button.titleLabel.minimumFontSize = 6;
+        button.titleLabel.minimumScaleFactor = 6.0/16.0;
         button.titleLabel.adjustsFontSizeToFitWidth = YES;
-        button.titleLabel.textAlignment = UITextAlignmentCenter;
+        button.titleLabel.textAlignment = NSTextAlignmentCenter;
         button.backgroundColor = [UIColor clearColor];
         button.tag = i++;
         
@@ -178,7 +178,7 @@
         id obj = [[buttonsMutableArray objectAtIndex: buttonIndex] objectAtIndex:0];
         if (![obj isEqual:[NSNull null]])
         {
-            ((void (^)())obj)();
+            ((void (^)(void))obj)();
         }
     }
     
@@ -199,7 +199,7 @@
 - (void)buttonClicked:(id)sender 
 {
     /* Run the button's block */
-    int buttonIndex = [sender tag] - 1;
+    NSInteger buttonIndex = [sender tag] - 1;
     [self dismissWithClickedButtonIndex:buttonIndex animated:YES];
 }
 

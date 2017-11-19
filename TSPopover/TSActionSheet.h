@@ -27,15 +27,15 @@
 @property (nonatomic) CGSize titleShadowOffset;
 
 - (id)initWithTitle:(NSString *)title;
-- (void)cancelButtonWithTitle:(NSString *) title block:(void (^)()) block;
-- (void)destructiveButtonWithTitle:(NSString *) title block:(void (^)()) block;
-- (void)addButtonWithTitle:(NSString *) title block:(void (^)()) block;
+- (void)cancelButtonWithTitle:(NSString *) title block:(void (^)(void)) block;
+- (void)destructiveButtonWithTitle:(NSString *) title block:(void (^)(void)) block;
+- (void)addButtonWithTitle:(NSString *) title block:(void (^)(void)) block;
 - (void)addButtonWithTitle:(NSString *)title 
                      color:(UIColor*)color 
                 titleColor:(UIColor*)titleColor 
                borderWidth:(NSUInteger)borderWidth 
                borderColor:(UIColor*)borderColor 
-                     block:(void (^)())block;
+                     block:(void (^)(void))block;
 - (void) showWithTouch:(UIEvent*)senderEvent;
 - (void) showWithRect:(CGRect)senderRect;
 - (void) showWithCell:(UITableViewCell*)senderCell;

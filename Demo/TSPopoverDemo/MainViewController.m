@@ -37,7 +37,7 @@
     UIBarButtonItem *spacerButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                  target:nil
                                                                                  action:nil];
-    UIBarButtonItem *addButton2 = [[UIBarButtonItem alloc] initWithTitle:@"TOUCH" style:UIBarButtonItemStyleBordered target:self action:@selector(showPopover:forEvent:)];
+    UIBarButtonItem *addButton2 = [[UIBarButtonItem alloc] initWithTitle:@"TOUCH" style:UIBarButtonItemStylePlain target:self action:@selector(showPopover:forEvent:)];
     UIBarButtonItem *spacerButton2 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                  target:nil
                                                                                  action:nil];
